@@ -1,0 +1,11 @@
+FaultGenerate
+{
+NA [0,1] { PORT "test.d1.i" }
+NA [0,1] { PORT "test.d1.j" }
+NA [0,1] { PORT "test.d1.o1" }
+NA [0,1] { PORT "test.d1.o2" }
+NA [0,1] { PORT "test.d2.i" }
+NA [0,1] { PORT "test.d2.j" }
+NA [0,1] { PORT "test.d2.o1" }
+NA [0,1] { PORT "test.d2.o2" }
+}

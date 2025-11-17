@@ -1,0 +1,45 @@
+Purpose
+-------
+
+	To check serial fault simulation flow for VC-Z01X where a set of Illegal Group Faults (IA,IF) from the concurrent simulation are fed back to serial fault simulation
+
+FLOW
+----
+
+	VC-Z01X : make run_vc_zoix
+
+		>> Compile through VCS 
+		>> Fault generation through vc_fcc (through fcm.tcl)
+		>> Fault simulation in Concurrent mode
+		>> Selection of IA faults from first simulation
+		>> Fault simulation of IA faults in Serial mode
+		>> Generation of report using final fault statuses
+
+DIRECTORY STRUCTURE
+-------------------
+		
+		>>	Makefile	:	contains all run commands for both tools
+		
+		>>	README		: 	guide to demo
+
+		>>	test.v		:	source file
+
+		>>  in.sff		:	sff file
+
+	
+LOGS
+----
+
+	VC-Z01X
+		>> compile 				: 	comp_v.log
+		>> vc_fcc 				:	vc_fcc.log
+		>> toggle				:	fcm.dir/latest/tasks/toggle*/out.log
+		>> coats				:	fcm.dir/latest/tasks/coats*/out.log
+		>> fsim					:	fcm.dir/latest/tasks/fault*/out.log
+		>> pre-serial coverage	:	fsim_v_pre.rpt
+		>> post-serial coverage	:	fsim_v.rpt
+
+
+Notes
+-----
+	A suitable version of VERDI should be used to run

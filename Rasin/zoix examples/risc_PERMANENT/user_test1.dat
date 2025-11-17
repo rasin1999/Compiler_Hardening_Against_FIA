@@ -1,0 +1,17 @@
+// 3 bits opcode, 5 bits address
+    111_00011 //e3
+@03 101_11010 //ba  ld fn 2
+    110_11011 //db  store fn 2 in temp location
+    010_11001 //59  add fn 1
+    110_11010 //da  store result as new fn 2
+    101_11011 //bb  load temp location
+    110_11001 //d9  store as new fn 1
+    100_11100 //9c  compare fn 1 to limit
+    001_00000 //20  if limit skip to halt else jump to start of loop
+    111_00011 //e3  jmp 03
+    000_00000 //00  halt
+    111_00011 //e3  jmp 03
+@19 000_00001 // fn1
+    000_00001 // fn2
+    000_00000 //00  temp location
+    000_10101 //90  limit

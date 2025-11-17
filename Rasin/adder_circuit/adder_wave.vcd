@@ -1,0 +1,41 @@
+$date
+	Mon Oct 20 01:39:47 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_four_bit_adder $end
+$var wire 4 ! SUM [3:0] $end
+$var wire 1 " COUT $end
+$var reg 4 # A [3:0] $end
+$var reg 4 $ B [3:0] $end
+$var reg 4 % C [3:0] $end
+$scope module uut $end
+$var wire 4 & A [3:0] $end
+$var wire 4 ' B [3:0] $end
+$var wire 4 ( C [3:0] $end
+$var wire 5 ) SumAB [4:0] $end
+$var wire 4 * SUM [3:0] $end
+$var wire 1 " COUT $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#40000
+$dumpvars
+b10 *
+b1111 )
+b11 (
+b101 '
+b1010 &
+b11 %
+b101 $
+b1010 #
+1"
+b10 !
+$end

@@ -1,0 +1,9 @@
+
+Command keyword: help
+
+When no argument is specified, lists all currently supported interactive commands. When a command is specified, shows the syntax of that command. 
+
+Usage:
+
+(zoix)> help [<interactive_command_keyword>]
+

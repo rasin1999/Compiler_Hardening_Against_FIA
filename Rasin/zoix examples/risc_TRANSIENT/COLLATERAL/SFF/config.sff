@@ -1,0 +1,61 @@
+#*******************************************************************************
+# (c) 2019 Synopsys, Inc.
+#
+# This file and it's contents are proprietary to Synopsys, Inc. and may 
+# only be used pursuant to the terms and conditions of a written license 
+# agreement with Synopsys, Inc. All other use, reproduction, modification, 
+# or distribution of this file is stricly prohibited.
+#*******************************************************************************
+
+# Set the Status Definitions that will be used and reported from fault simulation
+StatusDefinitions
+{
+    # Redefinition of some built-in status definitions
+    Redefine ND NX "Not Detected"
+    Redefine DD DX "Redefine DD";
+
+    # Creation of new functional safety definitions
+    NN "Not Observed Not Diagnosed";
+    NP "Not Observed Potential Diagnosed";
+    ND "Not Observed Diagnosed";
+    PN "Potential Observed Not Diagnosed";
+    OP "Observed Potentially Diagnosed";
+    ON "Observed Not Diagnosed";
+    OD "Observed Diagnosed";
+
+    # Any fault created and not set by a system task will have this status
+    DefaultStatus (NN)
+
+    # Any fault of this status will be chosen by the simulation for injection
+    Selected (NA, NN, NP, PN, OP, ON)
+
+    # Define the merging of faults when multiple tests are run
+    PromotionTable
+    {
+        StatusLabels (NN,NP,ND,PN,OP,ON,OD)
+        #  NN  NP  ND  PN  OP  ON  OD
+        [   -   |   |   |  ON   |   |  ;  # NN
+            -   -   |   |   |   |   |  ;  # NP
+            -   -   -   |  OD   |   |  ;  # ND
+            -   -   -   -  ON   |   |  ;  # PN
+           ON   -  OD  ON  OP   |   |  ;  # OP
+            -   -   -   -   -   -   |  ;  # ON 
+            -   -   -   -   -   -   -  ;  # OD
+        ]
+    }
+
+    StatusGroups
+    {
+        SA "Safe" (UT, UB, UR, UU);
+        DU "Dangerous Unobserved" (NN, NC, NO, NT);
+        DA "Dangerous Assumed" (HA, HM, HT, OA, OZ, IA, IP, IF, IX);
+        DN "Dangerous Not Diagnosed" (PN, ON, OP);
+        DD "Dangerous Diagnosed" (NP, ND, OD);
+    }
+
+}
+
+Coverage
+{
+    "Diagnostic Coverage" = "DD/(NA + DU + DA + DN + DD)";
+}

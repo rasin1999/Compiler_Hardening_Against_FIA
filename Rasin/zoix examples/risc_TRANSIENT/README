@@ -1,0 +1,63 @@
+
+Purpose
+-------
+
+	To check fault simulation flow for both VC-Z01X (single-user FDB flow) and Z01X in which TRANSIENT FLOP faults are simulated
+
+FLOW
+----
+
+	VC-Z01X	: make run_vc_zoix
+		>> Compile through VCS 
+		>> Fault generation through vc_fcc
+		>> Fault report generation through vc_fdb_report
+		>> Fault simulation and coverage report generation through vc_fcm
+
+	Z01X	: make run_zoix
+		>> Compile through Z01X
+		>> Fault generation through fr2fdef
+		>> Fault report generation through fault_report
+		>> Fault simulation and coverage report generation through fmsh in fdef flow
+
+
+DIRECTORY STRUCTURE
+-------------------
+		
+		>>	Makefile	:	contains all run commands for both tools
+		
+		>>	README		: 	guide to demo
+
+		>>	run.f		:	list of source files to be compiled
+
+		>>	user*.dat	:	stimulus files
+
+		>> 	COLLATERAL
+			SFF			:	contains SFF files config.sff & faults.sff
+			FMSH		:	contains user_local.fmsh 
+			FCM 		:	contains fcm_local.tcl
+
+		>>	src			: 	contains source	files
+	
+LOGS
+----
+
+	VC-Z01X
+		>> compile 	: 	comp_v.log
+		>> vc_fcc 	:	fgen_v.log
+		>> toggle	:	fcm.dir/latest/tasks/toggle*/out.log
+		>> coats	:	fcm.dir/latest/tasks/coats*/out.log
+		>> fsim		:	fcm.dir/latest/tasks/fault*/out.log
+		>> coverage	:	fsim_v.rpt
+
+	Z01X
+		>> compile 	: 	comp_z.log
+		>> fgen 	:	fgen_z.log
+		>> toggle	:	__tests__/[test_id]/zoix_rt.log	
+		>> coats	:	__fubs__/design/[test_id]/coats.log
+		>> fsim		:	__fubs__/design/[test_id]/simout-N0
+		>> coverage	:	fsim_z.rpt
+		>> fmsh		:	fmsh.log
+
+Notes
+-----
+	A suitable version of VERDI should be used to run

@@ -1,0 +1,16 @@
+Note
+----
+
+Following steps are followed in VERDI to dump single fault FM FSDB
+		>> File > Fault Database > Open Fault Database > Fill Data (SERVER [localhost], PORT [2021] > Connect > Select Project [fifo] > Open > Select Campaign [fifodemo] > Load Campaign 
+		>> Enable Faults > Configure Status Columns > Display All Status Columns
+		>> Select the required hierarchy from Fault Summary pane 
+		>> Select the required Fault from Fault Detail pane (LHS)
+		>> Select the required test from Fault Detail pane (RHS) ; Only test1 is enabled in the dumping script 
+		>> Select "Dump GM+FM FSDB for Fault"
+		>> Check messages for dumping
+		>> Waveform can be opened using "Open GM+FM FSDB in Wave Window"
+		
+******************************************************************************
+FDB Server should be stopped at the end of the execution using "make stop_fdb"
+******************************************************************************

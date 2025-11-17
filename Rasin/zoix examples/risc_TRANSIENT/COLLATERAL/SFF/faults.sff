@@ -1,0 +1,5 @@
+FaultGenerate
+{
+    Timing("cycle1", CycleTime 2000ps, Offset 1800ps)
+    NA ~ (100:140) { FLOP "test.risc1.**" }
+}

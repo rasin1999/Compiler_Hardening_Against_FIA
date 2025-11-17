@@ -1,0 +1,12 @@
+src/test.v
+src/alu.v
+src/clocks.v
+src/counter.v
+src/cpu.v
+src/decoder.v
+src/dff.v
+src/mem.v
+src/mux2x5.v
+src/register.v
+src/reseter.v
+src/tricon.v

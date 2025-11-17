@@ -1,0 +1,53 @@
+StatusDefinitions{
+    Redefine ND NX "Redifine ND";
+    Redefine DD DX "Redefine DD";
+    Redefine PD PX "Redfine PD";
+    NN "Not Observed Not Diagnosed";
+    NP "Not Observed Potentially Diagnosed";
+    PD "Potentially Observed Diagnosed";
+    ND "Not Observed Diagnosed";
+    PN "Potentially Observed Not Diagnosed";
+    PP "Potentially Observed Potentially Diagnosed";
+    ON "Observed Not Diagnosed";
+    OP "Observed Potentially Diagnosed";
+    OD "Observed Diagnosed";
+    AN "Assumed Dangerous Not Diagnosed";
+    AD "Assumed Dangerous Diagnosed";
+    AP "Assumed Dangerous Potentially Diagnosed";
+    IS "Invalid Status Promotion";
+
+    DefaultStatus(NN)
+
+    Selected(NA,NN,ON)
+
+    PromotionTable{
+        StatusLabels(NN,NP,ND,PD,PN,PP,ON,OP,OD,AP,AN,AD,IS)
+        [
+            NN NN ND PD PN PP ON OP OD IS IS IS IS ;
+            NN NP ND PD PN PP ON OP OD IS IS IS IS ;
+            ND ND ND PD PD PD OD OD OD IS IS IS IS ;
+            PD PD PD PD PD PD OD OD OD IS IS IS IS ;
+            PN PN PD PD PN PP ON ON OD IS IS IS IS ;
+            PP PP PD PD PN PP ON OP OD IS IS IS IS ;
+            ON ON OD OD ON ON ON ON OD IS IS IS IS ;
+            OP OP OD OD ON OP ON OP OD IS IS IS IS ;
+            OD OD OD OD OD OD OD OD OD IS IS IS IS ;
+            IS IS IS IS IS IS IS IS IS AP AN AD IS ;
+            IS IS IS IS IS IS IS IS IS AN AN AD IS ;
+            IS IS IS IS IS IS IS IS IS AD AD AD IS ;
+            IS IS IS IS IS IS IS IS IS IS IS IS IS ;
+        ]
+    }
+
+    StatusGroups{
+        DA "Dangerous Assumed" (HA,HM,HT,IA,IF,IP,IX,OA,OZ);
+        DD "Dangerous Diagnosed" (ND,NP,OD);
+        DN "Dangerous Not Diagnosed" (ON,OP,PN);
+        SA "Safe" (UB,UR,UT,UU);
+        SU "Dangerous Unobserved" (NC,NN,NO,NT);
+    }
+}
+
+Coverage {
+    "Diagnostic Coverage" = "DD/(NA + DA + DN + DD)";
+}
